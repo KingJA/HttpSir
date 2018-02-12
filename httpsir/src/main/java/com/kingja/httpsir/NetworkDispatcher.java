@@ -19,18 +19,16 @@ public class NetworkDispatcher extends Thread {
     private final ReponseDispatcher reponseDispatcher;
     private boolean mQuit;
 
-    public NetworkDispatcher(BlockingQueue<Request<?>> mQueue, HttpClient httpClient, Cache cache, ReponseDispatcher
+    public NetworkDispatcher(BlockingQueue<Request<?>> networkQueue, HttpClient httpClient, Cache cache, ReponseDispatcher
             reponseDispatcher) {
-        this.mQueue = mQueue;
+        this.mQueue = networkQueue;
         this.httpClient = httpClient;
         this.cache = cache;
         this.reponseDispatcher = reponseDispatcher;
     }
 
-
     @Override
     public void run() {
-
         while (true) {
             try {
                 processRequest();
@@ -43,8 +41,6 @@ public class NetworkDispatcher extends Thread {
     }
 
     private void processRequest() throws InterruptedException {
-
-
     }
 
 

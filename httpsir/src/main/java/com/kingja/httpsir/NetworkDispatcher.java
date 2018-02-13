@@ -1,5 +1,7 @@
 package com.kingja.httpsir;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -19,7 +21,8 @@ public class NetworkDispatcher extends Thread {
     private final ReponseDispatcher reponseDispatcher;
     private boolean mQuit;
 
-    public NetworkDispatcher(BlockingQueue<Request<?>> networkQueue, HttpClient httpClient, Cache cache, ReponseDispatcher
+    public NetworkDispatcher(BlockingQueue<Request<?>> networkQueue, HttpClient httpClient, Cache cache,
+                             ReponseDispatcher
             reponseDispatcher) {
         this.mQueue = networkQueue;
         this.httpClient = httpClient;
@@ -41,6 +44,9 @@ public class NetworkDispatcher extends Thread {
     }
 
     private void processRequest() throws InterruptedException {
+        Logger.d("【开始执行网络请求】");
+        Request<?> request = mQueue.take();
+        Reponse reponse = httpClient.loadNet(request);
     }
 
 
